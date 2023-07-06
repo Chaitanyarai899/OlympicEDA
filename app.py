@@ -9,10 +9,34 @@ import plotly.figure_factory as ff
 df = pd.read_csv('athlete_events.csv')
 region_df = pd.read_csv('noc_regions.csv')
 
+st.set_page_config(
+     page_title="OlympicEDA by ChaitanyaRai",
+     page_icon="📊",
+     layout="wide",
+     initial_sidebar_state="expanded",
+    
+)
+
+def add_bg_from_url():
+    st.markdown(
+         f"""
+         <style>
+         .stApp {{
+             background-image: url("https://static.storyweaver.org.in/illustrations/58816/large/3.jpg");
+             background-attachment: fixed;
+             background-size: cover
+         }}
+         </style>
+         """,
+         unsafe_allow_html=True
+     )
+
+add_bg_from_url()
+
 df = preprocessor.preprocess(df,region_df)
 
-st.sidebar.title("Olympics Analysis")
-st.sidebar.image('https://e7.pngegg.com/pngimages/1020/402/png-clipart-2024-summer-olympics-brand-circle-area-olympic-rings-olympics-logo-text-sport.png')
+st.sidebar.title("Olympics Exploratory Data Analysis")
+st.sidebar.image('https://i.pinimg.com/originals/5a/29/ef/5a29ef79dfdd7c0341e38d1834c8e9bc.jpg')
 user_menu = st.sidebar.radio(
     'Select an Option',
     ('Medal Tally','Overall Analysis','Country-wise Analysis','Athlete wise Analysis')
@@ -27,7 +51,7 @@ if user_menu == 'Medal Tally':
 
     medal_tally = helper.fetch_medal_tally(df,selected_year,selected_country)
     if selected_year == 'Overall' and selected_country == 'Overall':
-        st.title("Overall Tally")
+        st.title("Overall Medal Tally Since 1896")
     if selected_year != 'Overall' and selected_country == 'Overall':
         st.title("Medal Tally in " + str(selected_year) + " Olympics")
     if selected_year == 'Overall' and selected_country != 'Overall':
