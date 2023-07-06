@@ -2,5 +2,5 @@ streamlit==1.20.0
 plotly==5.14.1
 seaborn==0.12.2
 matplotlib
-pandas==1.5.3
-scipy==1.10.1
+pandas
+scipy
